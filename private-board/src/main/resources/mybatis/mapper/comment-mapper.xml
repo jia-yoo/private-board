@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.private_board.dao.ICommentDao">
+  <select id="getCommentList" resultType="com.example.private_board.dto.CommentDto">
+    SELECT * FROM comment_tbl WHERE bno = #{bno}
+  </select>
+  
+  <insert id="regComment">
+  	INSERT INTO comment_tbl (content, writer, bno, regtime) VALUES (#{comment.content}, #{comment.writer}, #{comment.bno}, NOW())
+  </insert>
+  
+  <delete id="deleteComment">
+  	DELETE FROM comment_tbl WHERE cno = #{cno}
+  </delete>
+  
+  <update id="updateComment">
+  	UPDATE comment_tbl SET content = #{content} WHERE cno = #{cno}
+  </update>
+</mapper>

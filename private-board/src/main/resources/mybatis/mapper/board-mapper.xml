@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.private_board.dao.IBoardDao">
+	<select id="getAllBoard" resultType="com.example.private_board.dto.BoardDto">
+		SELECT * FROM board_tbl
+	</select>
+	<select id="getBoard">
+		SELECT * FROM board_tbl WHERE bno = #{bno}
+	</select>
+	<insert id="regBoard">
+		INSERT INTO board_tbl VALUES(0, #{board.title},  #{board.content},  #{board.receiver}, #{board.writer}, NOW());
+	</insert>
+	<delete id="deleteBoard">
+		DELETE FROM board_tbl WHERE bno = #{bno}
+	</delete>
+	<select id="getMyList">
+		SELECT * FROM board_tbl WHERE writer= #{writer};
+	</select>
+	<select id="getReceiveList">
+		SELECT * FROM board_tbl WHERE receiver= #{receiver}; 
+	</select>
+	<update id="updateBoard">
+		UPDATE board_tbl set title=#{board.title}, content=#{board.content}, receiver=#{board.receiver}, regTime=now() where bno=#{board.bno};
+	</update>
+</mapper>
